@@ -11,8 +11,6 @@ public class ShaderControl : MonoBehaviour
     [SerializeField]
     private Color color;
     [SerializeField]
-    private float angle;
-    [SerializeField]
     private float density;
     [SerializeField]
     private bool isVisable;
@@ -20,6 +18,10 @@ public class ShaderControl : MonoBehaviour
     private float size;
 
     private Material material;
+    private float angle;
+
+    private const float ANGLE_RANGE_MIN = 20;
+    private const float ANGLE_RANGE_MAX = 1000;
 
     //Properies of the shader
     private const string colorRefernce = "Color_381494d5b8a84c46a3408fdecd5e6049";
@@ -34,6 +36,7 @@ public class ShaderControl : MonoBehaviour
     {
         material = GetComponent<MeshRenderer>().material;
         material.SetFloat(visablityRefernce,0);
+        angle = Random.Range(ANGLE_RANGE_MIN, ANGLE_RANGE_MAX);
     }
 
     private void Update()
