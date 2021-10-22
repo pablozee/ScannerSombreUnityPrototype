@@ -41,7 +41,12 @@ public class Gun : MonoBehaviour
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
 
-            GameObject hitParticleEffect = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+            //GameObject hitParticleEffect = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+
+            if (hit.collider.gameObject.tag == "Enviroment")
+            {
+                hit.collider.gameObject.GetComponent<ShaderControl>().Hitted();
+            }
 
         }
 
