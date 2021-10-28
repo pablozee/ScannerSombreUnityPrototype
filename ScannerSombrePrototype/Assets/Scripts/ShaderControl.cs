@@ -11,23 +11,18 @@ public class ShaderControl : MonoBehaviour
     [SerializeField]
     private float density;
     [SerializeField]
-    private bool isVisable;
-    //Distance from camera needs implementation
-    [SerializeField]
-    private float distance;
-    [SerializeField]
-    private float scale;
+    private float size;
     private Material material;
   //Randomizes the pattern
     private const float ANGLE_RANGE_MIN = 20;
     private const float ANGLE_RANGE_MAX = 1000;
 
     //Properies of the shader
-    private const string angleRefernce = "CellAngle";
     private const string densityRefernce = "CellDensity";
+    private const string angleRefernce = "CellAngle";
     private const string scaleRefernce = "Scale";
     private const string visablityRefernce = "Visablity";
-    private const string distanceRefernce = "Distance";
+    private const string sizeRefernce = "Size";
 
     private void Start()
     {
@@ -39,7 +34,7 @@ public class ShaderControl : MonoBehaviour
         material.SetFloat(angleRefernce, angle);
         material.SetFloat(densityRefernce, density);
         material.SetFloat(visablityRefernce, 0);
-        material.SetFloat(distanceRefernce,distance);
+        material.SetFloat(sizeRefernce, size);
     }
 
     /// <summary>
@@ -47,9 +42,6 @@ public class ShaderControl : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        material.SetFloat(densityRefernce, density);
-        material.SetVector(scaleRefernce, transform.lossyScale);
-
     }
 
     /// <summary>
