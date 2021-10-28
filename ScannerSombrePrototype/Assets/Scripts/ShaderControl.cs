@@ -7,47 +7,54 @@ using UnityEngine;
 /// </summary>
 public class ShaderControl : MonoBehaviour
 {
-   
-    [SerializeField]
-    private Color color;
+    //Describes the shape of the cirles
     [SerializeField]
     private float density;
     [SerializeField]
     private bool isVisable;
+    //Distance from camera needs implementation
     [SerializeField]
-    private float size;
-
+    private float distance;
+    [SerializeField]
+    private float scale;
     private Material material;
-    private float angle;
-
+  //Randomizes the pattern
     private const float ANGLE_RANGE_MIN = 20;
     private const float ANGLE_RANGE_MAX = 1000;
 
     //Properies of the shader
-    private const string colorRefernce = "Color_381494d5b8a84c46a3408fdecd5e6049";
-    private const string scaleRefernce = "Vector2_45412501e588472982e0fdc755b7d60d";
-    private const string angleRefernce = "Vector1_2b9352adfb1047d290484cdc243cd534";
-    private const string densityRefernce = "Vector1_6ec47fd4e6044714ba16d677c0e36e2b";
-    private const string sizeRefernce = "Vector1_3bf0dbc98a034fb88eec7350a9341a91";
-    private const string visablityRefernce = "Vector1_ed74f5af198a44d0ab6514cd0c63b21f";
+    private const string angleRefernce = "CellAngle";
+    private const string densityRefernce = "CellDensity";
+    private const string scaleRefernce = "Scale";
+    private const string visablityRefernce = "Visablity";
+    private const string distanceRefernce = "Distance";
 
-
-    void Start()
+    private void Start()
     {
         material = GetComponent<MeshRenderer>().material;
-        material.SetFloat(visablityRefernce,0);
-        angle = Random.Range(ANGLE_RANGE_MIN, ANGLE_RANGE_MAX);
-    }
+        float angle = Random.Range(ANGLE_RANGE_MIN, ANGLE_RANGE_MAX);
 
-    private void Update()
-    {
-        material.SetColor(colorRefernce, color);
-      material.SetVector(scaleRefernce, transform.lossyScale);
+        //Set instance properties
+        material.SetVector(scaleRefernce, transform.lossyScale);
         material.SetFloat(angleRefernce, angle);
         material.SetFloat(densityRefernce, density);
-        material.SetFloat(sizeRefernce, size);
+        material.SetFloat(visablityRefernce, 0);
+        material.SetFloat(distanceRefernce,distance);
     }
 
+    /// <summary>
+    /// Used to update distance
+    /// </summary>
+    private void Update()
+    {
+        material.SetFloat(densityRefernce, density);
+        material.SetVector(scaleRefernce, transform.lossyScale);
+
+    }
+
+    /// <summary>
+    /// Displays the object in it's entirity
+    /// </summary>
     public void Hitted()
     {
         material.SetFloat(visablityRefernce, 1);
