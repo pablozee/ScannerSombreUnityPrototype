@@ -92,13 +92,20 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
+    - BlackRange: 0
+    - BlueRange: 0
     - Boolean_1d23936cc17442278df00fc41005ff02: 1
+    - Distance: 0
+    - GreenRange: 0
+    - RedRange: 5
     - Vector1_2b9352adfb1047d290484cdc243cd534: 2
     - Vector1_3bf0dbc98a034fb88eec7350a9341a91: 1
     - Vector1_484f164b0b9148dcb7df89a331d56069: 0
     - Vector1_6ec47fd4e6044714ba16d677c0e36e2b: 2
     - Vector1_ed74f5af198a44d0ab6514cd0c63b21f: 1
+    - YellowRange: 0
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
