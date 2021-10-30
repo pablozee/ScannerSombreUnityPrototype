@@ -23,10 +23,9 @@ public class ShaderControl : MonoBehaviour
     private const string scaleRefernce = "Scale";
     private const string visablityRefernce = "Visablity";
     private const string sizeRefernce = "Size";
-    private const string xlimits0 = "X_Limits0";
-    private const string xlimits1 = "X_Limits1";
-    private const string ylimits0 = "Y_Limits0";
-    private const string ylimits1 = "Y_Limits1";
+    private const string  minLimits = "MinLimits";
+    private const string maxLimits = "MaxLimits";
+
     #endregion
     private Vector2 xCurrentLimits;
     private Vector2 yCurrentLimits;
@@ -43,8 +42,8 @@ public class ShaderControl : MonoBehaviour
         xCurrentLimits = new Vector2(1, 0);
         yCurrentLimits = new Vector2(0, 1);
         CreateGrid();
+     
         //Set instance properties
-        material.SetVector(scaleRefernce, transform.lossyScale);
         material.SetFloat(angleRefernce, angle);
         material.SetFloat(densityRefernce, density);
         material.SetFloat(visablityRefernce, 0);
@@ -140,7 +139,7 @@ public class ShaderControl : MonoBehaviour
     /// <summary>
     /// Draws the grid for visaul
     /// </summary>
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
         if (gridLayout == null)
@@ -154,7 +153,7 @@ public class ShaderControl : MonoBehaviour
             Vector3 max = grid.GetMax();
             Vector3 size = new Vector3(max.x - min.x, max.y - min.y, max.z - min.z);
             Gizmos.DrawWireCube(min + (size / 2), size);
-        }    
+        }
     }
 
     private struct Grid
