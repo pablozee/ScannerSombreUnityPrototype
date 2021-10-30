@@ -45,11 +45,9 @@ public class Gun : MonoBehaviour
 
             if (hit.collider.gameObject.tag == "Enviroment")
             {
-                hit.collider.gameObject.GetComponent<ShaderControl>().Hitted();
+                hit.collider.gameObject.GetComponent<ShaderControl>().Hitted(hit.point);
             }
-
         }
-
 
     }
 }
