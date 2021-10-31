@@ -254,6 +254,7 @@ MonoBehaviour:
   density: 10
   size: 1
   gridSize: 5
+  cube: {fileID: 0}
 --- !u!65 &111675967
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -366,6 +367,7 @@ MonoBehaviour:
   density: 700
   size: 1
   gridSize: 5
+  cube: {fileID: 0}
 --- !u!65 &133132372
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -478,6 +480,7 @@ MonoBehaviour:
   density: 10
   size: 1
   gridSize: 5
+  cube: {fileID: 0}
 --- !u!65 &198907564
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -665,6 +668,7 @@ MonoBehaviour:
   density: 10
   size: 1
   gridSize: 5
+  cube: {fileID: 0}
 --- !u!65 &450770562
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -905,6 +909,7 @@ MonoBehaviour:
   density: 10
   size: 1
   gridSize: 5
+  cube: {fileID: 0}
 --- !u!65 &1124363920
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1065,7 +1070,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1260799562
 Transform:
   m_ObjectHideFlags: 0
@@ -1131,6 +1136,7 @@ MonoBehaviour:
   density: 700
   size: 1
   gridSize: 5
+  cube: {fileID: 0}
 --- !u!65 &1390280615
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1243,6 +1249,7 @@ MonoBehaviour:
   density: 10
   size: 1
   gridSize: 5
+  cube: {fileID: 0}
 --- !u!65 &1489309807
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1321,7 +1328,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1527771982
 Transform:
   m_ObjectHideFlags: 0
@@ -1395,6 +1402,7 @@ MonoBehaviour:
   density: 10
   size: 1
   gridSize: 5
+  cube: {fileID: 0}
 --- !u!65 &1583063501
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1507,6 +1515,7 @@ MonoBehaviour:
   density: 10
   size: 1
   gridSize: 5
+  cube: {fileID: 0}
 --- !u!65 &1644892870
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1619,6 +1628,7 @@ MonoBehaviour:
   density: 700
   size: 1
   gridSize: 5
+  cube: {fileID: 0}
 --- !u!65 &1684707286
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1832,7 +1842,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1760861633
 Transform:
   m_ObjectHideFlags: 0
@@ -1862,6 +1872,7 @@ MonoBehaviour:
   density: 70
   size: 1
   gridSize: 5
+  cube: {fileID: 0}
 --- !u!65 &1760861635
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1974,6 +1985,7 @@ MonoBehaviour:
   density: 70
   size: 1
   gridSize: 5
+  cube: {fileID: 0}
 --- !u!65 &1927185720
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6895,7 +6907,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2123431176
 Transform:
   m_ObjectHideFlags: 0
@@ -6925,6 +6937,7 @@ MonoBehaviour:
   density: 70
   size: 1
   gridSize: 5
+  cube: {fileID: 0}
 --- !u!65 &2123431178
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7093,7 +7106,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 4.5905e-41, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 4.5905e-41, y: 8.543615e-32, z: 4.5905e-41, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0

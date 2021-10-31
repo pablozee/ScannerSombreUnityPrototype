@@ -23,24 +23,32 @@ public class ShaderControl : MonoBehaviour
     private const string scaleRefernce = "Scale";
     private const string visablityRefernce = "Visablity";
     private const string sizeRefernce = "Size";
-    private const string  minLimits = "MinLimits";
-    private const string maxLimits = "MaxLimits";
+    private const string  minLimitsRefernce = "MinLimits";
+    private const string maxLimitsRefernce = "MaxLimits";
 
     #endregion
-    private Vector2 xCurrentLimits;
-    private Vector2 yCurrentLimits;
+    private Vector3 minLimits;
+    private Vector3 maxLimits;
+    private Vector3 colliderSize;
     private List<Grid> gridLayout;
 
     [SerializeField]
     private float gridSize = 5;
+
+    [SerializeField]
+    private GameObject cube;
 
     private void Start()
     {
         material = GetComponent<MeshRenderer>().material;
         float angle = Random.Range(ANGLE_RANGE_MIN, ANGLE_RANGE_MAX);
 
-        xCurrentLimits = new Vector2(1, 0);
-        yCurrentLimits = new Vector2(0, 1);
+       minLimits = new Vector3(1, 1,1);
+       maxLimits = new Vector3(0,0,0);
+
+        material.SetVector(minLimitsRefernce, minLimits);
+        material.SetVector(maxLimitsRefernce, maxLimits);
+
         CreateGrid();
      
         //Set instance properties
@@ -60,40 +68,107 @@ public class ShaderControl : MonoBehaviour
     /// <summary>
     /// Displays the object in it's entirity
     /// </summary>
-    public void Hitted(Vector2 pos)
+    public void Hitted(Vector3 pos)
     {
-        Vector2 uv = transform.InverseTransformPoint(pos);
+        CheckGrid(pos);
+
         material.SetFloat(visablityRefernce, 1);
 
-        //    CheckGrid(uv);
     }
 
     /// <summary>
     /// Determiens which partition of the model to display
     /// </summary>
     /// <param name="pos"></param>
-    private void CheckGrid(Vector2 pos)
+    private void CheckGrid(Vector3 pos)
     {
-        Debug.Log(pos);
-        pos += new Vector2(5f, 5f);
-        pos /= 10;
-        Debug.Log(pos);
-
-        //Check x
-        if (pos.x < xCurrentLimits.x)
+        foreach (Grid square in gridLayout)
         {
-            xCurrentLimits.x = pos.x;
+            //Check bounds
+            //X
+            if (pos.x >= square.GetMin().x && pos.x <= square.GetMax().x)
+            {
+                //Y
+                if (pos.y >= square.GetMin().y && pos.y <= square.GetMax().y)
+                {
+                    //Z
+                    if (pos.z >= square.GetMin().z && pos.z <= square.GetMax().z)
+                    {
+                        UpdateVisable(square);
+                    }
+                }
+
+
+            }
+
         }
-        if (pos.x > xCurrentLimits.y)
+    }
+
+    private void UpdateVisable(Grid square)
+    {
+        bool changed = false;
+        //Check min
+        Vector3 min = ConvertToUV(square.GetMax());
+
+
+        if (min.x < minLimits.x)
         {
-            xCurrentLimits.y = pos.x;
+            minLimits.x = min.x;
+            changed = true;
+        }
+        if (min.y < minLimits.y)
+        {
+            minLimits.y = min.y;
+            changed = true;
+        }
+        if (min.z < minLimits.y)
+        {
+            minLimits.y = min.z;
+            changed = true;
+        }
+
+        //Check min
+        Vector3 max = ConvertToUV(square.GetMin());
+        if (max.x > maxLimits.x)
+        {
+            maxLimits.x = max.x;
+            changed = true;
+        }
+        if (max.y > maxLimits.y)
+        {
+            maxLimits.y = max.y;
+            changed = true;
+        }
+        if (max.z > maxLimits.y)
+        {
+            maxLimits.y = max.z;
+            changed = true;
         }
 
 
-        Vector2 Xlimts = new Vector2(xCurrentLimits.x, xCurrentLimits.y);
-        Vector2 yLimtis = new Vector2(0, 1);
-        material.SetVector(xlimits0, Xlimts);
-        material.SetVector(ylimits0, yLimtis);
+        if (changed)
+        {
+            material.SetVector(minLimitsRefernce, minLimits);
+            material.SetVector(maxLimitsRefernce, maxLimits);
+        }
+    }
+
+    private Vector3 ConvertToUV(Vector3 pos)
+    {
+        Vector3 uv = pos;
+        uv += colliderSize / 2;
+        
+        uv.x /= colliderSize.x;
+        uv.y /= colliderSize.y;
+        uv.z /= colliderSize.z;
+
+        uv.x = 1 - uv.x;
+        uv.y = 1 - uv.y;
+        uv.z = 1 - uv.z;
+        Debug.Log(uv);
+
+
+        return uv;
     }
 
     /// <summary>
@@ -102,17 +177,19 @@ public class ShaderControl : MonoBehaviour
     private void CreateGrid()
     {
         gridLayout = new List<Grid>();
-
         //Get min pos
         BoxCollider box = GetComponent<BoxCollider>();
-        Vector3 size = box.size;
+        colliderSize = box.size;
         Vector3 center = box.center;
 
-        Vector3 min = center - (size / 2);
-        Vector3 max = center + (size / 2);
-
+        Vector3 min = center - (colliderSize / 2);
+        Vector3 max = center + (colliderSize / 2);
+   
         min = transform.TransformPoint(min);
         max = transform.TransformPoint(max);
+
+        //Get world size
+        colliderSize = max - min;
 
         float xStep = (max.x - min.x) /gridSize ;
         float yStep = (max.y - min.y) / gridSize;
