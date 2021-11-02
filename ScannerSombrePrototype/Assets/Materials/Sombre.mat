@@ -102,7 +102,7 @@ Material:
     - BlueRange: 15
     - Boolean_1d23936cc17442278df00fc41005ff02: 1
     - CellAngle: 12
-    - CellDensity: 10
+    - CellDensity: 80
     - Distance: 1
     - GreenRange: 10
     - RedRange: 0

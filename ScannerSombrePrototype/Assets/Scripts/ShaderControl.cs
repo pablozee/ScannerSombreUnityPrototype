@@ -139,7 +139,7 @@ public class ShaderControl : MonoBehaviour
             maxLimits.y = max.y;
             changed = true;
         }
-        if (max.z > maxLimits.y)
+        if (max.z > maxLimits.x)
         {
             maxLimits.y = max.z;
             changed = true;
@@ -219,10 +219,10 @@ public class ShaderControl : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
-        if (gridLayout == null)
-        {
+      //  if (gridLayout == null)
+       // {
             CreateGrid();
-        }
+      //  }
 
         foreach (Grid grid in gridLayout)
         {
